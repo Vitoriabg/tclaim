@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Identifique automaticamente afirmações verificáveis (claims) em notícias usando Inteligência Artificial.">
+  <title>Detector de Claims de IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@500;600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="polvo.css">
+   <script src="polvo.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- Símbolos SVG invisíveis para uso posterior -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-logo" viewBox="0 0 24 24"><path d="M4 6h10M4 12h16M4 18h8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="19" cy="6" r="2" fill="currentColor"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  </svg>
+
+  <a class="skip" href="#analisador">Ir para o analisador</a>
+
+  <header class="navbar">
+    <div class="wrap navbar-in">
+      <a href="#inicio" class="logo" aria-label="Detector de Claims, página inicial">
+        <!-- CORREÇÃO APLICADA AQUI: <use href="#i-logo" /> -->
+        <span class="logo-ico"><svg width="20" height="20"><use href="#i-logo"/></svg></span>Detector de Claims
+      </a>
+      <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+      <nav id="menu" class="menu" aria-label="Principal">
+        <a href="#analisador">Analisador</a>
+        <a href="#historico">Histórico</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero" id="analisador">
+      <div class="wrap narrow">
+        <div class="hero-txt">
+          <h1>Cole a notícia e veja o que pode ser checado</h1>
+          <p>Clique em uma sentença destacada para pesquisar no Google.</p>
+        </div>
+
+        <div class="card">
+          <div class="field-top">
+            <label for="url-input">Link do Instagram (Post ou Reel)</label>
+          </div>
+          <input type="url" id="url-input" placeholder="Ex: https://www.instagram.com/p/..." style="width: 100%; padding: 14px; border: 1px solid var(--borda); border-radius: 8px; margin-bottom: 20px; font: inherit; background: #fafbfd; color: var(--titulo);">
+
+          <div class="field-top">
+            <label for="texto-input">Ou cole o texto da notícia</label>
+            <button type="button" class="link" id="btn-exemplo">Usar texto de exemplo</button>
+          </div>
+          <textarea id="texto-input" placeholder="Cole a notícia inteira aqui para iniciar a análise..."></textarea>
+          <p id="erro" class="erro" role="alert" hidden></p>
+          <div class="acoes">
+            <button id="btn-analisar" class="btn btn-lg"><svg width="18" height="18"><use href="#i-search"/></svg><span>Analisar Texto</span></button>
+          </div>
+        </div>
+
+        <section class="card resultado" id="area-resultado" aria-live="polite" tabindex="-1" aria-labelledby="titulo-resultado">
+          <div class="resultado-header">
+            <h3 id="titulo-resultado">Resultado da Análise</h3>
+            <span id="badge-contador" class="badge">0 claims</span>
+          </div>
+          <div id="texto-formatado" class="texto-leitura"></div>
+          <p class="dica">Clique em uma claim destacada para pesquisá-la no Google (abre em nova aba).</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="sec" id="historico">
+      <div class="wrap narrow">
+        <div class="hist-head">
+          <h2>Histórico</h2>
+          <button type="button" class="link" id="btn-limpar" hidden>Limpar histórico</button>
+        </div>
+        <p id="hist-vazio" class="vazio">Nenhuma notícia analisada ainda. As análises ficam salvas neste navegador.</p>
+        <ul id="hist-lista" class="hist-lista"></ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <nav aria-label="Rodapé"><a href="#analisador">Analisador</a><a href="#historico">Histórico</a></nav>
+      Equipe Octopus 
+    </div>
+  </footer>
+
+</body>
+</html>

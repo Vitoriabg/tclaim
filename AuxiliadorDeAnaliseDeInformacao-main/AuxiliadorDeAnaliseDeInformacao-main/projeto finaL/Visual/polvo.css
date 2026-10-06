@@ -1,0 +1,56 @@
+/* ===== Polvo nadando (marca d'água branca, só na área escura do topo) ===== */
+.hero { position: relative; overflow: hidden; overflow: clip; }
+.hero > .wrap { position: relative; z-index: 1; }
+
+.polvo-faixa { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; --cw: 100vw; }
+
+.polvo-x {
+  position: absolute; left: 0; top: var(--top);
+  width: var(--w); opacity: var(--op);
+  animation: polvo-ida-volta var(--dur) cubic-bezier(.45, .05, .55, .95) infinite;
+  animation-delay: var(--delay);
+}
+.polvo-grande  { --w: clamp(190px, 24vw, 320px); --op: .20; --top: 6%;  --dur: 95s;  --dur-y: 7s; --delay: -12s; }
+.polvo-pequeno { --w: clamp(110px, 12vw, 170px); --op: .12; --top: 55%; --dur: 130s; --dur-y: 9s; --delay: -80s; }
+
+.polvo-y { animation: polvo-y var(--dur-y) ease-in-out infinite alternate; }
+.polvo-fig { position: relative; aspect-ratio: 810 / 926; transform-origin: 50% 30%; animation: polvo-pulso 3.4s ease-in-out infinite; }
+.polvo-fig img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; }
+
+/* cabeça fixa + "cauda" ondulando: duas cópias da mesma imagem com máscaras complementares */
+.p-cabeca { -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 40%, transparent 60%); mask-image: linear-gradient(to bottom, #000 0, #000 40%, transparent 60%); }
+.p-cauda  { -webkit-mask-image: linear-gradient(to bottom, transparent 38%, #000 58%); mask-image: linear-gradient(to bottom, transparent 38%, #000 58%);
+            transform-origin: 50% 40%; animation: polvo-cauda 4.2s ease-in-out infinite; }
+
+.bolha { position: absolute; left: var(--l); top: var(--t); width: var(--s); height: var(--s); border: 1.5px solid rgba(255, 255, 255, .95); border-radius: 50%; opacity: 0; animation: polvo-bolha var(--d) ease-in infinite; animation-delay: var(--dl); }
+
+@keyframes polvo-ida-volta {
+  0%   { transform: translateX(calc(-1 * var(--w))) scaleX(1); }
+  47%  { transform: translateX(var(--cw)) scaleX(1); }
+  50%  { transform: translateX(var(--cw)) scaleX(-1); }
+  97%  { transform: translateX(calc(-1 * var(--w))) scaleX(-1); }
+  100% { transform: translateX(calc(-1 * var(--w))) scaleX(-1); }
+}
+@keyframes polvo-y     { from { transform: translateY(-5%) rotate(-3deg); } to { transform: translateY(6%) rotate(3deg); } }
+@keyframes polvo-pulso { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.018, .984); } }
+@keyframes polvo-cauda { 0%, 100% { transform: rotate(-2.2deg) skewX(2.6deg); } 50% { transform: rotate(2.2deg) skewX(-2.6deg); } }
+@keyframes polvo-bolha {
+  0%   { opacity: 0; transform: translate(0, 0) scale(.6); }
+  15%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(-14px, -90px) scale(1.15); }
+}
+
+/* ===== Lupa que aparece ao passar o mouse nas claims ===== */
+.lupa-cursor { position: fixed; left: 0; top: 0; width: 64px; height: 64px; pointer-events: none; z-index: 200; opacity: 0; transition: opacity .15s; will-change: transform; }
+.lupa-cursor.ativa { opacity: 1; }
+.lupa-cursor svg { display: block; width: 100%; height: 100%; transform-origin: 88% 88%; transform: scale(.5) rotate(-12deg); transition: transform .22s cubic-bezier(.2, 1.5, .4, 1); }
+.lupa-cursor.ativa svg { transform: scale(1) rotate(0); animation: lupa-balanco 2.6s ease-in-out .25s infinite; }
+@keyframes lupa-balanco { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+@media (hover: none) { .lupa-cursor { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .polvo-x, .polvo-y, .polvo-fig, .p-cauda, .bolha, .lupa-cursor svg { animation: none !important; }
+  .polvo-x { left: auto; right: 3%; }
+  .polvo-pequeno, .bolha { display: none; }
+}
+@media print { .polvo-faixa, .lupa-cursor { display: none; } }

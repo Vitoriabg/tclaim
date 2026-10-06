@@ -1,0 +1,39 @@
+/* ===== Cartão de apoio ao pensamento crítico ===== */
+.rag-caixa { margin: 12px 0 16px; padding: 20px 22px; background: #fff; border: 1px solid var(--borda); border-left: 4px solid var(--azul-600); border-radius: 12px; font-size: 15px; line-height: 1.6; color: var(--texto); text-align: left; box-shadow: 0 1px 2px rgba(15, 27, 51, .04); animation: surge .25s ease both; }
+.rag-caixa > * + * { margin-top: 16px; }
+.rag-carregando { color: #5f6c82; font-style: italic; }
+.rag-erro { color: var(--erro); font-weight: 500; }
+.rag-aviso { color: var(--titulo); }
+
+.rag-topo { display: flex; flex-direction: column; gap: 8px; }
+.rag-resumo { color: var(--titulo); font-size: 15px; }
+.rag-chip { display: inline-block; align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: .02em; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+.rag-chip-tipo { background: var(--azul-50); color: var(--azul-800); border: 1px solid var(--azul-100); }
+
+.rag-sec h4 { font-family: 'Public Sans', system-ui, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--azul-800); margin-bottom: 8px; }
+.rag-sec ul, .rag-sec ol { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+.rag-checar { list-style: none; padding-left: 0 !important; }
+.rag-checar li { position: relative; padding-left: 24px; }
+.rag-checar li::before { content: ""; position: absolute; left: 0; top: .35em; width: 14px; height: 14px; border: 2px solid var(--azul-500); border-radius: 4px; }
+.rag-perguntas li::marker { font-weight: 700; color: var(--azul-600); }
+.rag-perguntas li { padding-left: 4px; color: var(--titulo); }
+.rag-sec-alerta { background: #fff8e6; border: 1px solid #f3dfa2; border-radius: 10px; padding: 12px 14px; }
+.rag-sec-alerta h4 { color: #92400e; }
+
+.rag-fontes { border: 1px solid var(--borda); border-radius: 10px; background: #fafbfd; }
+.rag-fontes summary { cursor: pointer; padding: 12px 14px; font-weight: 600; color: var(--azul-800); list-style-position: inside; }
+.rag-fontes[open] summary { border-bottom: 1px solid var(--borda); }
+.rag-fonte { padding: 12px 14px; }
+.rag-fonte + .rag-fonte { border-top: 1px solid var(--borda); }
+.rag-fonte-cab { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.rag-fonte-link { font-weight: 600; color: var(--azul-700); overflow-wrap: anywhere; }
+.rag-fonte-link:hover { text-decoration: underline; }
+.rag-obs { margin-top: 4px; font-size: 14px; color: var(--texto); }
+.rag-rel-apoia { background: #e7f6ec; color: #166534; }
+.rag-rel-contradiz { background: #fdecec; color: #b91c1c; }
+.rag-rel-apenas_repete { background: #fff4db; color: #92400e; }
+.rag-rel-nao_trata { background: #eceff4; color: #4a5568; }
+
+.rag-google { display: inline-block; margin-top: 10px; font-size: 14px; font-weight: 600; color: var(--azul-700); }
+.rag-google:hover { text-decoration: underline; }
+.rag-rodape { font-size: 13px; color: #5f6c82; border-top: 1px solid var(--borda); padding-top: 12px; }
