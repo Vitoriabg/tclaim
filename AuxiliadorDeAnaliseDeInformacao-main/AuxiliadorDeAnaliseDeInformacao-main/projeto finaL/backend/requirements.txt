@@ -7,3 +7,6 @@ scikit-learn==1.6.1
 joblib
 spacy>=3.8,<3.9
 instaloader
+ddgs
+google-genai
+ 
